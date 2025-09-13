@@ -18,7 +18,7 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/r3labs/diff/v2 v2.15.1
 	github.com/redis/go-redis/v9 v9.7.0
-	github.com/sagernet/sing v0.5.1
+	github.com/sagernet/sing v0.6.10
 	github.com/sagernet/sing-shadowsocks v0.2.7
 	github.com/shirou/gopsutil/v3 v3.24.5
 	github.com/sirupsen/logrus v1.9.3
@@ -309,3 +309,5 @@ require (
 )
 
 replace github.com/exoscale/egoscale => github.com/exoscale/egoscale v0.102.3
+
+replace github.com/sagernet/sing-shadowsocks => github.com/chenx-dust/sing-shadowsocks-ts-tolerance v0.0.0-20250913122745-a13a164e9b6f
