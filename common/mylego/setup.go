@@ -7,11 +7,9 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/go-acme/lego/v4/certcrypto"
-	"github.com/go-acme/lego/v4/challenge/dns01"
 	"github.com/go-acme/lego/v4/challenge/http01"
 	"github.com/go-acme/lego/v4/challenge/tlsalpn01"
 	"github.com/go-acme/lego/v4/lego"
-	"github.com/go-acme/lego/v4/providers/dns"
 	"github.com/go-acme/lego/v4/registration"
 	"golang.org/x/crypto/acme"
 )
@@ -73,24 +71,7 @@ func setupChallenges(l *LegoCMD, client *lego.Client) {
 		if err != nil {
 			log.Panic(err)
 		}
-	case "dns":
-		setupDNS(l.C.Provider, client)
 	default:
-		log.Panic("No challenge selected. You must specify at least one challenge: `http`, `tls`, `dns`.")
-	}
-}
-
-func setupDNS(p string, client *lego.Client) {
-	provider, err := dns.NewDNSChallengeProviderByName(p)
-	if err != nil {
-		log.Panic(err)
-	}
-
-	err = client.Challenge.SetDNS01Provider(
-		provider,
-		dns01.CondOption(true, dns01.AddDNSTimeout(10*time.Second)),
-	)
-	if err != nil {
-		log.Panic(err)
+		log.Panic("No challenge selected. You must specify at least one challenge: `http`, `tls`.")
 	}
 }
